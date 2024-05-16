@@ -26,6 +26,44 @@ def getSingleTodo():
 def updateTodo():
     return "updateTodo called"
 
+# Dynamnic Path
+
+@app.get("/gettodo1/{id}")
+def getTodo1(id):
+    print("Get todos called, id")
+    return id
+
+@app.get("/gettodo2/{userName}/{rollNumber}")
+def getTodo2(userName , rollNumber):
+    print("Get todos called, userName , rollNumber")
+    return userName + rollNumber
+
+# Query Param
+
+@app.get("/getSingleTodo1")
+def getSingleTodo1(userName:str, rollNumber:str):
+    print("Get todos called, userName , rollNumber")
+    return "getSingleTodo called"
+
+students = [{
+    "userName" : "Athar",
+    "rollNumber" : 125
+}, {
+    "userName" : "Azhar",
+    "rollNumber" : 123
+}
+]
+
+@app.get("/students")
+def getStudents():
+    return students
+
+@app.get("/addStudent")
+def addStudent(userName, rollNumber):
+    global students
+    students.append({"userName": userName, "rollNumber": rollNumber})
+    return students
+
 
 def start():
     uvicorn.run("todos.main:app",host="127.0.0.1", port=8080, reload=True)  
