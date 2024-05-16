@@ -1,5 +1,7 @@
 from fastapi import FastAPI 
 import uvicorn
+from typing import Union
+
 
 app = FastAPI()
 
@@ -67,3 +69,19 @@ def addStudent(userName, rollNumber):
 
 def start():
     uvicorn.run("todos.main:app",host="127.0.0.1", port=8080, reload=True)  
+
+
+#  Next Class Work
+
+userName:str = "Athar"
+age:int = 25
+
+listOfStudentName:list[str] = ["First", "Second", "Third"]
+car: dict[str, Union[int, str]] = {
+    "Model": 2025,
+    "color": "black"
+}
+
+
+def getUserFullName(firstName:str ,lastName:str, age:int):
+    return firstName + " " + lastName 
